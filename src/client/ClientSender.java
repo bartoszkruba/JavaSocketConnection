@@ -1,32 +1,19 @@
 package client;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
-public class NetworkClient implements Runnable {
-   private final int SERVER_PORT = 9999;
-   private final String SERVER_ADRESS = "192.168.10.154";
+public class ClientSender implements Runnable {
    private final int SLEEP_MS = 100;
 
    private Socket socket;
    List<String> msgQeue;
 
-   public NetworkClient(List<String> msgQeue) {
-
+   public ClientSender(List<String> msgQeue, Socket socket) {
+      this.socket = socket;
       this.msgQeue = msgQeue;
-
-      try {
-         socket = new Socket(SERVER_ADRESS, SERVER_PORT);
-         System.out.println("Connected");
-      } catch (IOException e) {
-         System.out.println("Could not connect");
-         e.printStackTrace();
-      }
    }
 
    @Override

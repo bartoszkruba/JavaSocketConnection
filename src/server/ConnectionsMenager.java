@@ -1,6 +1,7 @@
 package server;
 
 import java.net.Socket;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,5 +28,9 @@ public class ConnectionsMenager {
 
    public boolean removeConnection(Socket socket) {
       return connectedUsers.remove(socket) != null;
+   }
+
+   public Map<Socket, User> getConnectedUsers() {
+      return Collections.unmodifiableMap(connectedUsers);
    }
 }

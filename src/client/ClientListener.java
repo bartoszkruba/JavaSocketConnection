@@ -1,20 +1,18 @@
-package server;
+package client;
+
+import server.ConnectionsMenager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ServerWorker implements Runnable {
+public class ClientListener implements Runnable {
 
-   private final Socket socket;
-   private final String adress;
+   Socket socket;
 
-   public ServerWorker(Socket socket) {
+   public ClientListener(Socket socket) {
       this.socket = socket;
-      this.adress = socket.getInetAddress().toString();
-      ConnectionsMenager.getInstance().addConnection(socket, new User("Unregistered"));
-      System.out.println("New client connected: " + adress);
    }
 
    @Override
@@ -25,7 +23,7 @@ public class ServerWorker implements Runnable {
             String msg = new BufferedReader(input).readLine();
             if (msg == null) {
                ConnectionsMenager.getInstance().removeConnection(socket);
-               System.out.println(adress + " disconnected");
+               System.out.println("Server disconnected");
                return;
             }
             System.out.println(msg);
@@ -34,6 +32,5 @@ public class ServerWorker implements Runnable {
       } catch (IOException e) {
          e.printStackTrace();
       }
-
    }
 }

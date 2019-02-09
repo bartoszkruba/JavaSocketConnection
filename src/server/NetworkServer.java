@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class NetworkServer {
-   private final int SERVER_PORT = 9999;
+   private final int SERVER_PORT = 4999;
    private final int QEUE_SIZE = 100;
 
    private ServerSocket serverSocket;
