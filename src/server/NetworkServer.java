@@ -19,6 +19,7 @@ public class NetworkServer {
    }
 
    public void run() {
+      System.out.println("Listening on " + SERVER_PORT);
       while (true) {
          try {
             Socket socket = serverSocket.accept();
