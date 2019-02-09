@@ -14,6 +14,7 @@ public class ServerWorker implements Runnable {
    public ServerWorker(Socket socket) {
       this.socket = socket;
       this.adress = socket.getInetAddress().toString();
+      ConnectionsMenager.getInstance().addConnection(socket, new User("Unregistered"));
       System.out.println("New client connected: " + adress);
    }
 
