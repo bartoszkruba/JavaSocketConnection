@@ -18,27 +18,37 @@ public class ServerSender implements Runnable {
    @Override
    public void run() {
       while (true) {
+
+         // Getting the oldest message from messageQueue
+         // Method return null if there is no messages waiting at the moment
          Message msg = MessageQueue.getInstance().shiftMessage();
+
          if (msg != null) {
+            // There is new message awaiting to be send
+
             try {
+
+               // getting output stream from socket
+               // msg.getReceiver will return socket
+               // All data needs to be sended through output stream
                PrintWriter output = new PrintWriter(msg.getReceiver().getOutputStream());
+
+               // Setting up message
                output.println(msg.getContent());
+
+               // Sending message
                output.flush();
             } catch (IOException e) {
                e.printStackTrace();
             }
          }
+
+         // If there is no messages waiting to be send Thread will sleep for 100ms
          try {
             Thread.sleep(SLEEP_MS);
          } catch (InterruptedException e) {
          }
 
-
-         try {
-            Thread.sleep(SLEEP_MS);
-         } catch (InterruptedException e) {
-
-         }
       }
    }
 }

@@ -18,6 +18,9 @@ public class ClientListener implements Runnable {
    @Override
    public void run() {
       try {
+
+         // Listens for all messages comming thourgh socket
+         // Same code as in ServerWorker
          while (true) {
             InputStreamReader input = new InputStreamReader(socket.getInputStream());
             String msg = new BufferedReader(input).readLine();

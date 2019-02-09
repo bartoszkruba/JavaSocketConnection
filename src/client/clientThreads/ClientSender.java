@@ -18,7 +18,11 @@ public class ClientSender implements Runnable {
 
    @Override
    public void run() {
+
       while (true) {
+
+         // Checking if there is some message waiting in the queue
+         // Same code as in ServerSender but there is no middleware between list and sender
          if (msgQueue.size() > 0) {
             String msg = msgQueue.remove(0);
 
