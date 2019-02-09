@@ -1,6 +1,6 @@
-package client;
+package client.clientThreads;
 
-import server.ConnectionsMenager;
+import server.ConnectionsManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class ClientListener implements Runnable {
             InputStreamReader input = new InputStreamReader(socket.getInputStream());
             String msg = new BufferedReader(input).readLine();
             if (msg == null) {
-               ConnectionsMenager.getInstance().removeConnection(socket);
+               ConnectionsManager.getInstance().removeConnection(socket);
                System.out.println("Server disconnected");
                return;
             }

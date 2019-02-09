@@ -1,20 +1,22 @@
 package server;
 
+import server.models.User;
+
 import java.net.Socket;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConnectionsMenager {
-   private static ConnectionsMenager ourInstance = new ConnectionsMenager();
+public class ConnectionsManager {
+   private static ConnectionsManager ourInstance = new ConnectionsManager();
 
-   public static ConnectionsMenager getInstance() {
+   public static ConnectionsManager getInstance() {
       return ourInstance;
    }
 
    private Map<Socket, User> connectedUsers = new HashMap<>();
 
-   private ConnectionsMenager() {
+   private ConnectionsManager() {
 
    }
 

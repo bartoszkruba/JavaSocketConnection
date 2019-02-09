@@ -1,5 +1,8 @@
 package client;
 
+import client.clientThreads.ClientListener;
+import client.clientThreads.ClientSender;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.LinkedList;

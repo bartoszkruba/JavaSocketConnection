@@ -1,4 +1,4 @@
-package client;
+package client.clientThreads;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,18 +9,18 @@ public class ClientSender implements Runnable {
    private final int SLEEP_MS = 100;
 
    private Socket socket;
-   List<String> msgQeue;
+   List<String> msgQueue;
 
    public ClientSender(List<String> msgQeue, Socket socket) {
       this.socket = socket;
-      this.msgQeue = msgQeue;
+      this.msgQueue = msgQeue;
    }
 
    @Override
    public void run() {
       while (true) {
-         if (msgQeue.size() > 0) {
-            String msg = msgQeue.remove(0);
+         if (msgQueue.size() > 0) {
+            String msg = msgQueue.remove(0);
 
             try {
                PrintWriter output = new PrintWriter(socket.getOutputStream());
