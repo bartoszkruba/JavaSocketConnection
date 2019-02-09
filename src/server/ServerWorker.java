@@ -9,23 +9,29 @@ import java.net.Socket;
 public class ServerWorker implements Runnable {
 
    private final Socket socket;
+   private final String adress;
 
    public ServerWorker(Socket socket) {
       this.socket = socket;
-      System.out.println("Connected to new client: " + socket.getInetAddress());
+      this.adress = socket.getInetAddress().toString();
+      System.out.println("New client connected: " + adress);
    }
 
    @Override
    public void run() {
       try {
-         InputStreamReader input = new InputStreamReader(socket.getInputStream());
-         while (socket.getInputStream().read() != -1) {
+         while (true) {
+            InputStreamReader input = new InputStreamReader(socket.getInputStream());
             String msg = new BufferedReader(input).readLine();
+            if (msg == null) {
+               break;
+            }
             System.out.println(msg);
          }
-         System.out.println("Connection lost");
+
       } catch (IOException e) {
          e.printStackTrace();
       }
+      System.out.println(adress + " disconnected");
    }
 }
