@@ -8,12 +8,12 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Program {
+class Program {
 
    private final int SERVER_PORT = 4999;
    private final String SERVER_ADRESS = "192.168.10.153";
 
-   public Program() {
+   Program() {
 
       while (true) {
          runClient();
@@ -26,7 +26,7 @@ public class Program {
 
    }
 
-   public void runClient() {
+   private void runClient() {
       Socket socket;
       LinkedList<String> msgQueue = new LinkedList<>();
       try {
