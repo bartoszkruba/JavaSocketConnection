@@ -19,7 +19,7 @@ public class ClientSender implements Runnable {
    @Override
    public void run() {
 
-      while (true) {
+      while (!socket.isClosed()) {
 
          // Checking if there is some message waiting in the queue
          // Same code as in ServerSender but there is no middleware between list and sender
@@ -39,5 +39,6 @@ public class ClientSender implements Runnable {
          } catch (InterruptedException e) {
          }
       }
+      System.out.println("Closing sender");
    }
 }

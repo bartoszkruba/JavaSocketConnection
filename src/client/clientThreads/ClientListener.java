@@ -1,7 +1,5 @@
 package client.clientThreads;
 
-import server.ConnectionsManager;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,22 +16,20 @@ public class ClientListener implements Runnable {
    @Override
    public void run() {
       try {
-
          // Listens for all messages comming thourgh socket
          // Same code as in ServerWorker
-         while (true) {
+         while (!socket.isClosed()) {
             InputStreamReader input = new InputStreamReader(socket.getInputStream());
             String msg = new BufferedReader(input).readLine();
             if (msg == null) {
-               ConnectionsManager.getInstance().removeConnection(socket);
                System.out.println("Server disconnected");
-               return;
+               socket.close();
             }
             System.out.println(msg);
          }
-
       } catch (IOException e) {
          e.printStackTrace();
       }
+      System.out.println("Closing listener");
    }
 }

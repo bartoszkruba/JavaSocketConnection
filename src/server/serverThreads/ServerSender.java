@@ -38,6 +38,7 @@ public class ServerSender implements Runnable {
 
                // Sending message
                output.flush();
+
             } catch (IOException e) {
                e.printStackTrace();
             }

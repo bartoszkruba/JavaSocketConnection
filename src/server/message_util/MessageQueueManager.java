@@ -13,7 +13,7 @@ public class MessageQueueManager {
    }
 
    // Sending message to all current connected users with one method
-   public void sendToAll(String message) {
+   public synchronized void sendToAll(String message) {
 
       // Loops though all connected users
       ConnectionsManager.getInstance().getConnectedUsers()

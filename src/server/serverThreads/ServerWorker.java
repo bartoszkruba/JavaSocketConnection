@@ -45,6 +45,8 @@ public class ServerWorker implements Runnable {
 
                // removing socket from userlist since its no longer connected
                ConnectionsManager.getInstance().removeConnection(socket);
+               input.close();
+               socket.close();
                System.out.println(adress + " disconnected");
 
                // no user connected so there is no point in waiting for new messages

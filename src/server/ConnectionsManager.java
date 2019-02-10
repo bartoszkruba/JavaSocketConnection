@@ -24,7 +24,7 @@ public class ConnectionsManager {
 
    // adding new connection to hashmap
    // return true if connection was successfully added
-   public boolean addConnection(Socket socket, User user) {
+   public synchronized boolean addConnection(Socket socket, User user) {
       if (!connectedUsers.containsKey(socket)) {
          connectedUsers.put(socket, user);
          return true;
@@ -34,11 +34,11 @@ public class ConnectionsManager {
 
    // removing connection from hashmap
    // returns true if connection was succesfully removed
-   public boolean removeConnection(Socket socket) {
+   public synchronized boolean removeConnection(Socket socket) {
       return connectedUsers.remove(socket) != null;
    }
 
-   public Map<Socket, User> getConnectedUsers() {
+   public synchronized Map<Socket, User> getConnectedUsers() {
       return Collections.unmodifiableMap(connectedUsers);
    }
 }
